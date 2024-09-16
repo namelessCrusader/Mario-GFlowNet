@@ -14,7 +14,7 @@ alpha = 2
 beta = 1
 eta = 1
 
-vglc_path = "/home/nisargparikh/Desktop/CS 7170/Final/VGLC/TheVGLC-master/Super Mario Bros/Processed/"
+vglc_path = "./Super Mario Bros/Processed/"
 
 def get_tiles(processed_levels_path):
     tiles = []
@@ -183,14 +183,11 @@ for Stable,full_tile_set in settings:
 
     torch.save(forward_model.state_dict(),"Logs/model_"+method_name+".pt")
 
-settings = list(itertools.product([True,False], repeat=2))
+settings = list(itertools.product([True,False], repeat=5))
+FeatureMaps = False
 
-for Stable,full_tile_set in settings:
+for from_left, Stable, seed, full_tile_set, bottom_left in settings:
 
-    from_left = False
-    seed = True
-    FeatureMaps = True
-    bottom_left = False
     
     sampled_levels,losses,rewards,forward_model,method_name = train_flow_matching(FeatureMaps,from_left,Stable,seed,full_tile_set, bottom_left)
 
