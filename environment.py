@@ -10,8 +10,12 @@ class WaveFunctionCollapseEnvironment():
         self.with_seed = with_seed
         self.from_left = from_left
         self.bottom_left = bottom_left
+
+        # Unknown Tile
         self.tiles.append("U")
+        # Next Tile
         self.tiles.append("N")
+        
         self.length = length
         self.width = width
         self.num_actions = len(tiles) 
@@ -132,16 +136,7 @@ class WaveFunctionCollapseEnvironment():
 
         return state, done
     
-    # def array_to_string(self,state):
-    #     tiles = state.copy().tolist()
-    #     for i in range(state.shape[0]):  
-    #         for j in range(state.shape[1]):
-    #             tiles[i][j] = self.ids_map[state[i, j]]
-        
-    #     level = []
-    #     for i in range(state.shape[0]):
-    #         level.append("".join(tiles[i]))
-    #     return level
+
     def array_to_string(self, state):
         # Using a list comprehension and map for efficient conversion
         return ["".join(map(self.ids_map.get, row)) for row in state.tolist()]
@@ -163,7 +158,9 @@ class WaveFunctionCollapseEnvironmentWithFeatureMap():
         self.from_left = from_left
         self.bottom_left = bottom_left
 
+        # Unknown Tile
         self.tiles.append("U")
+        # Next Tile
         self.tiles.append("N")
         
         self.num_actions = len(tiles) 
@@ -270,7 +267,6 @@ class WaveFunctionCollapseEnvironmentWithFeatureMap():
             level[x,self.width - 1] = self.tiles_map["-"] 
 
         for y in range(self.width):
-            # level[0,y] = self.tiles_map["-"]
             level[self.length - 1,y] = self.tiles_map["X"] 
 
         return level
