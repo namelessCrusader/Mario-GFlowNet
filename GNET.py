@@ -15,15 +15,13 @@ class FlowMatching(nn.Module):
         F = self.forward_policy(x).exp()
         return F
     
-    # Backward Policy
-    # Update as needed
     def backward(self,state):
         return self.backward_policy(state)  
     
 class TrajectoryBalance(nn.Module):
   def __init__(self, forward_policy,backward_policy,num_tiles):
     super().__init__()
-    # The input dimension is 6 for the 6 patches.
+
     self.forward_policy = forward_policy
     self.backward_policy = backward_policy
     self.num_tiles = num_tiles

@@ -21,7 +21,6 @@ class ConvNet(nn.Module):
         self.pool3 = nn.MaxPool2d(kernel_size=(2, 2))
 
         self.flat = torch.flatten
-        # self.linear_dims = self.width * self.length * 8
 
         self.linear_dims = (self.width - 2) * (self.length - 2) * 2
         self.fc3 = nn.Linear(self.linear_dims, 512)
