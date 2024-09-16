@@ -104,7 +104,7 @@ class ConvNetFeatureMapsTB(nn.Module):
         self.drop3 = nn.Dropout(0.5)
 
         self.fc4 = nn.Linear(512, self.num_actions)
-sss
+        
     def forward(self, x):
         x = self.act1(self.conv1(x))
         x = self.drop1(x)
