@@ -8,7 +8,7 @@ import os
 import pickle as pkl
 import itertools
 
-vglc_path = "/home/nisargparikh/Desktop/CS 7170/Final/VGLC/TheVGLC-master/Super Mario Bros/Processed/"
+vglc_path = "./Super Mario Bros/Processed/"
 
 def get_tiles(processed_levels_path):
     tiles = []
@@ -104,21 +104,16 @@ def train_trajectory_balance(FeatureMaps,from_left,seed,full_tile_set,bottom_lef
             logZs.append(F_sa.logZ.item())
     return sampled_levels,losses,rewards,forward_model,method_name
 
-# FeatureMaps = False
-# from_left = True
-# full_tile_set = False
-# seed = True
-
 length = 6
 width = 10
 epsilon = 0.7
 
-settings = list(itertools.product([True,False], repeat=2))
-for bottom_left,full_tile_set in settings:
-    FeatureMaps = False
-    seed = True
-    # bottom_left = False
-    from_left = False
+FeatureMaps = False
+
+settings = list(itertools.product([True,False], repeat=4))
+
+for from_left,seed,full_tile_set,bottom_left in settings:
+    
     sampled_levels,losses,rewards,forward_model,method_name = train_trajectory_balance(FeatureMaps,from_left,seed,full_tile_set,bottom_left)
 
     with open("Logs/levels_"+method_name+".pkl","wb+") as file:
