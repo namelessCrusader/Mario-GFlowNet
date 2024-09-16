@@ -112,6 +112,12 @@ FeatureMaps = False
 
 settings = list(itertools.product([True,False], repeat=4))
 
+os.makedirs("Logs", exist_ok=True)
+os.makedirs("Logs/levels_", exist_ok=True)
+os.makedirs("Logs/loss_", exist_ok=True)
+os.makedirs("Logs/reward_", exist_ok=True)
+
+
 for from_left,seed,full_tile_set,bottom_left in settings:
     
     sampled_levels,losses,rewards,forward_model,method_name = train_trajectory_balance(FeatureMaps,from_left,seed,full_tile_set,bottom_left)

@@ -14,7 +14,7 @@ for name in os.listdir(loss_dir):
 
     plt.figure(figsize=(10,3))
     plt.plot(plot.moving_average(np.array(losses)))
-    # plt.plot(losses)
+
     plt.yscale('log')
     plt.savefig(plots_dir+name+".png")
 

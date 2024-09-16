@@ -127,19 +127,12 @@ def train_flow_matching(FeatureMaps,from_left,Stable,seed,full_tile_set, bottom_
             minibatch_loss = 0
     return sampled_levels,losses,rewards,forward_model, method_name
 
-# FeatureMaps = False
-# from_left = True
-# Stable = False
-# seed = True
-# full_tile_set = False
-
 length = 10
 width = 10
 epsilon = 0.7
 
 num_episodes = 5000
 
-# REDO SFMLR_ALL_TILES once more later, one of the runs showed it getting better 
 settings = list(itertools.product([True,False], repeat=3))
 
 for from_left,Stable,full_tile_set in settings:
@@ -186,10 +179,16 @@ for Stable,full_tile_set in settings:
 settings = list(itertools.product([True,False], repeat=5))
 FeatureMaps = False
 
+os.makedirs("Logs", exist_ok=True)
+os.makedirs("Logs/levels_", exist_ok=True)
+os.makedirs("Logs/loss_", exist_ok=True)
+os.makedirs("Logs/reward_", exist_ok=True)
+
 for from_left, Stable, seed, full_tile_set, bottom_left in settings:
 
     
     sampled_levels,losses,rewards,forward_model,method_name = train_flow_matching(FeatureMaps,from_left,Stable,seed,full_tile_set, bottom_left)
+
 
     with open("Logs/levels_"+method_name+".pkl","wb+") as file:
         pkl.dump(sampled_levels,file)

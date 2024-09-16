@@ -83,10 +83,7 @@ for name in os.listdir(levels_dir):
                     level = feature_map_to_level(np.array(level),len(level[0]),len(level[1])).tolist()
                 except:
                     input(name)
-            # try:
             ascii_level = level.copy()
-            # except:
-            #     ascii_level = level.copy().tolist()
             try:
                 for y, row in enumerate(level):
                     for x, char in enumerate(row):
